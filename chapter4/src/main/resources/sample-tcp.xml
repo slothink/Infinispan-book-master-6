@@ -23,7 +23,7 @@
              -->
             <stateTransfer
                     timeout="240000"
-                    fetchInMemoryState="false"
+                    fetchInMemoryState="true"
 
                     />
 
