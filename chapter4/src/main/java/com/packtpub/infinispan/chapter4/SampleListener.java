@@ -9,6 +9,7 @@ import org.infinispan.notifications.cachemanagerlistener.annotation.CacheStarted
 import org.infinispan.notifications.cachemanagerlistener.annotation.CacheStopped;
 import org.infinispan.notifications.cachemanagerlistener.event.CacheStartedEvent;
 import org.infinispan.notifications.cachemanagerlistener.event.CacheStoppedEvent;
+import org.infinispan.remoting.transport.Address;
 
 /**
  * Created by slothink on 2015-04-20.
@@ -40,6 +41,10 @@ public class SampleListener {
 
     @CacheStarted
     public void cacheStarted(CacheStartedEvent event) {
+        System.out.println("My address:"+event.getCacheManager().getAddress());
+        for(Address address: event.getCacheManager().getMembers()) {
+            System.out.println("Member In Cluster:" + address);
+        }
         print("Cache started");
     }
 
