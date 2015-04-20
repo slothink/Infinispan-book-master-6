@@ -13,6 +13,8 @@
 
     </global>
     <namedCache name="clusteredCache">
+        <eviction maxEntries="-1" strategy="FIFO" />
+        <expiration lifespan="-1" maxIdle="-1" wakeUpInterval="100000" />
         <clustering mode="replication">
             <!--
                     <stateRetrieval
