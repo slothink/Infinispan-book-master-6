@@ -15,7 +15,7 @@ import java.util.UUID;
  */
 public class SampleTcpCache {
     DefaultCacheManager m = null;
-    Cache<Integer, Ticket> cache = null;
+    Cache<String, Ticket> cache = null;
 
     public void start() throws NotSupportedException, SystemException, SecurityException, IllegalStateException, RollbackException, HeuristicMixedException, HeuristicRollbackException {
 
@@ -28,6 +28,7 @@ public class SampleTcpCache {
         m.addListener(new SampleListener());
 
         cache = m.getCache("clusteredCache");
+        cache.addListener(new SampleListener());
 
 
         String command = ""; // Line read from standard in
@@ -43,18 +44,18 @@ public class SampleTcpCache {
                 String show = IOUtils.readLine("Enter show ");
 
                 Ticket ticket = new Ticket(name,show);
-                cache.put(ticketid, ticket);
+                cache.put(name, ticket);
                 log("Booked ticket "+ticket);
                 ticketid++;
             }
             else if (command.equals("pay")) {
-                Integer id = new Integer(IOUtils.readLine("Enter ticketid "));
-                Ticket ticket = cache.remove(id);
+                String name = IOUtils.readLine("Enter ticketid ");
+                Ticket ticket = cache.remove(name);
                 log("Checked out ticket "+ticket);
             }
             else if (command.equals("list")) {
-                Set<Integer> set = cache.keySet();
-                for (Integer ticket: set) {
+                Set<String> set = cache.keySet();
+                for (String ticket: set) {
                     System.out.println(cache.get(ticket));
                 }
             }
@@ -69,7 +70,7 @@ public class SampleTcpCache {
                 Ticket ticket = cache.get(Integer.parseInt(id));
                 ticket.setShow(show);
                 beginTransaction();
-                cache.put(Integer.parseInt(id), ticket);
+                cache.put(id, ticket);
                 String captcha =
                         UUID.randomUUID().toString().substring(0,4);
                 String check =
