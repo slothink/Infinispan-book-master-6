@@ -29,6 +29,7 @@ public class SampleUdpCache {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        m.addListener(new SampleListener());
 
         cache = m.getCache("clusteredCache");
 
