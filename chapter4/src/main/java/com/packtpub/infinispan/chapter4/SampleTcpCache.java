@@ -22,8 +22,7 @@ public class SampleTcpCache {
         try {
             m = new DefaultCacheManager("sample-tcp.xml");
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         m.addListener(new SampleListener());
 

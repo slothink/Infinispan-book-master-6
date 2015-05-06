@@ -4,7 +4,7 @@
             xmlns="urn:infinispan:config:6.0">
     <global>
         <transport
-                nodeName="Infinispan-Node1"
+                nodeName="${APP_NAME:infinispan-node}"
                 clusterName="infinispan-cluster" >
             <properties>
                 <property name="configurationFile" value="jgroups-tcp-3.5.1.xml" />
@@ -12,7 +12,7 @@
         </transport>
 
     </global>
-    <namedCache name="clusteredCache">
+    <namedCache name="clusteredCache" >
         <eviction maxEntries="-1" strategy="NONE" />
         <expiration lifespan="-1" maxIdle="-1" wakeUpInterval="100000" />
         <clustering mode="replication">
