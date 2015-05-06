@@ -22,5 +22,14 @@ The following software is required to build and run the examples:
 
 * Sun JDK 6 (latest updates)
 * Apache Maven 3.0.x
-* Infinispan 5.1.3.FINAL (as dictated by the Maven POM files in this project)
+* Infinispan 6.2.0.FINAL (as dictated by the Maven POM files in this project)
+* JGruops 3.5.1
 * While not strictly necessary, an integrated development environment (IDE) is strongly recommended.  Both [IntelliJ IDEA](http://www.jetbrains.com/idea/download/) and [Eclipse](http://www.eclipse.org/downloads/) are popular, open source and free Java IDEs.
+
+# Running Chapters
+
+Add JVM Parameters
+-Djava.net.preferIPv4Stack=true -Djgroups.tcpping.initial_hosts=192.168.5.99[7800],192.168.5.99[7801],192.168.8.94[7800],192.168.8.94[7801] -Djgroups.bind_addr=192.168.8.94 -Djgroups.tcp.address=192.168.8.94 -Djgroups.tcp.port=7800
+
+
+
